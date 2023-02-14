@@ -1,0 +1,14 @@
+---
+# tasks file for add_packages
+- name: Install additional packages
+  community.general.pacman:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ packages }}"
+
+- name: Install AUR packages
+  kewlfft.aur.aur:
+    name: "{{ aur }}"
+    use: makepkg
+    state: present
+  become: no

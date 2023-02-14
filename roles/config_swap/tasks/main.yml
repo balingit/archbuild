@@ -1,0 +1,43 @@
+---
+# tasks file for config_swap
+- name: Install zram-generator
+  community.general.pacman:
+    name: zram-generator
+    state: present
+
+- name:  Create zram config file
+  ansible.builtin.copy:
+    src: zram-generator.conf
+    dest: /etc/systemd/zram-generator.conf
+    owner: root
+    group: root
+    mode: '0644'
+
+# Disable zswap
+- name: Check if zswap is already configured
+  ansible.builtin.lineinfile:
+    dest: /etc/default/grub
+    regexp: '^(.*)zswap.enabled=N(.*)$'
+    state: absent
+  check_mode: yes
+  changed_when: false
+  register: zswapdisabled
+
+- name: Modify zswap.enabled if Y
+  ansible.builtin.lineinfile:
+    dest: /etc/default/grub
+    regexp: '^(.*)zswap.enabled=Y(.*)$'
+    line: '\1zswap.enabled=N\2'
+    backrefs: yes
+  register: zswapmodified
+  notify: Recreate grub.cfg
+
+- name: Insert zswap.enabled
+  ansible.builtin.lineinfile:
+    dest: /etc/default/grub
+    regexp: '^(.*)GRUB_CMDLINE_LINUX_DEFAULT="(.*)$'
+    line: '\1GRUB_CMDLINE_LINUX_DEFAULT="zswap.enabled=N \2 '
+    backrefs: yes
+  when: not zswapdisabled.found and not zswapmodified.changed
+  notify: Recreate grub.cfg
+

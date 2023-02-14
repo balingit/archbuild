@@ -1,0 +1,2 @@
+[arch]
+arch1 ansible_connection=local

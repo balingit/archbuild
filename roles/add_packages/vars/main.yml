@@ -1,0 +1,9 @@
+---
+# vars file for add_packages
+packages:
+  - base-devel
+  - fakeroot
+  - tree
+
+aur:
+  - vi-vim-symlink

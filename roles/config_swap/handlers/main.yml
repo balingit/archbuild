@@ -1,0 +1,4 @@
+---
+# handlers file for config_swap
+- name: Recreate grub.cfg
+  ansible.builtin.command: grub-mkconfig -o /boot/grub/grub.cfg
