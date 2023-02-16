@@ -1,0 +1,17 @@
+---
+# vars file for config_snapshots
+config_root:
+  - regexp: '^NUMBER_LIMIT='
+    line: 'NUMBER_LIMIT="10"'
+  - regexp: '^NUMBER_LIMIT_IMPORTANT='
+    line: 'NUMBER_LIMIT_IMPORTANT="5"'
+  - regexp: '^TIMELINE_LIMIT_HOURLY='
+    line: 'TIMELINE_LIMIT_HOURLY="5"'
+  - regexp: '^TIMELINE_LIMIT_DAILY='
+    line: 'TIMELINE_LIMIT_DAILY="7"'
+  - regexp: '^TIMELINE_LIMIT_WEEKLY='
+    line: 'TIMELINE_LIMIT_WEEKLY="0"'
+  - regexp: '^TIMELINE_LIMIT_MONTHLY='
+    line: 'TIMELINE_LIMIT_MONTHLY="0"'
+  - regexp: '^TIMELINE_LIMIT_YEARLY='
+    line: 'TIMELINE_LIMIT_YEARLY="0"'

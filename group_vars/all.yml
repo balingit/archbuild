@@ -1,0 +1,4 @@
+---
+snapshot_subvolume:
+  UUID: "e9761585-5384-4680-a9f5-d0a5cff98171"
+  options: "rw,relatime,compress=zstd:3,space_cache=v2,subvol=/@snapshots"

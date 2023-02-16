@@ -1,0 +1,5 @@
+---
+# vars file for add_collections
+coll:
+  - kewlfft.aur
+  - ansible.posix

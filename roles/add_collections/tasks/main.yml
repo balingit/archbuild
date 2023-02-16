@@ -1,0 +1,9 @@
+---
+# tasks file for add_collections
+- name: Install collections
+  community.general.ansible_galaxy_install:
+    type: collection
+    name: "{{ item }}"
+    dest: /usr/share/ansible/collections
+  loop: "{{ coll }}"
+

@@ -1,0 +1,5 @@
+---
+# handlers file for config_snapshots
+- name: Daemon reload
+  ansible.builtin.systemd:
+    daemon_reload: yes

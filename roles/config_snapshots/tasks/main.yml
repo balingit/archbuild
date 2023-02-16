@@ -1,0 +1,8 @@
+---
+# tasks file for config_snapshots
+- name: Install and configure Snapper
+  import_tasks: snapper.yml
+
+- name: Install and configure snap-pac
+  import_tasks: snap-pac.yml
+

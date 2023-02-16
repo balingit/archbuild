@@ -4,6 +4,9 @@
   become: yes
 
   roles:
+    - role: add_collections
+      tags: coll
+
     - role: add_packages
       tags: packages
 

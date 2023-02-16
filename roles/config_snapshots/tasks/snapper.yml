@@ -1,0 +1,79 @@
+---
+- name: Install snapper
+  community.general.pacman:
+    name: snapper
+    state: present
+
+- name: Check if /etc/snapper/configs/root exist
+  stat:
+    path: "/etc/snapper/configs/root"
+  register: snapper_root
+
+- name: Create config root
+  block:
+  when: not snapper_root.stat.exists
+    - name: Unmount .snapshots
+      ansible.posix.mount:
+        path: /.snapshots
+        state: unmounted
+
+    - name: Remove /.snapshots
+      ansible.builtin.file:
+        path: /.snapshots
+        state: absent
+
+    - name: Create config root
+      ansible.builtin.command: snapper -c root create-config /
+
+    - name: Delete created subvolume
+      ansible.builtin.command: btrfs subvolume delete /.snapshots
+
+    - name: Create /.snapshots directory
+      ansible.builtin.file:
+        path: /.snapshots
+        state: directory
+
+    - name: Mount /.snapshots subvolume
+      ansible.posix.mount:
+        path: /.snapshots
+        src: "UUID={{ snapshot_volume.UUID }}"
+        fstype: btrfs
+        opts: "{{ snapshot_volume.options }}"
+        state: mounted
+
+    - name: Set permissions for /.snapshots
+      ansible.builtin.file:
+        path: /.snapshots
+        mode: '0750'
+
+- name: Configure snapper root
+  ansible.builtin.lineinfile:
+    path: /etc/snapper/configs/root
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop: "{{ config_root }}"
+
+- name: Enable systemd timers
+  ansible.builtin.service:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  loop:
+    - snapper-timeline.timer
+    - snapper-cleanup.timer
+
+- name: Create /etc/systemd/system/snapper-cleanup.timer.d directory
+  ansible.builtin.file:
+    path: /etc/systemd/system/snapper-cleanup.timer.d
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Override snapper-cleanup timer
+  ansible.builtin.file:
+    src: override.conf
+    dest: /etc/systemd/system/snapper-cleanup.timer.d/override.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Daemon reload

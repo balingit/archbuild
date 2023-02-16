@@ -1,0 +1,12 @@
+---
+- name: Install snap-pac
+  community.general.pacman:
+    name: snap-pac
+    state: present
+
+- name: Configure snap-pac.ini
+  community.general.ini_file:
+    path: /etc/snap-pac.ini
+    section: root
+    option: cleanup_algorithm
+    value: empty-pre-post
