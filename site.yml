@@ -7,6 +7,9 @@
     - role: add_collections
       tags: coll
 
+    - role: config_snapshots
+      tags: snapshots
+
     - role: add_packages
       tags: packages
 
