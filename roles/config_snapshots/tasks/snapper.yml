@@ -65,6 +65,7 @@
 - name: Create /etc/systemd/system/snapper-cleanup.timer.d directory
   ansible.builtin.file:
     path: /etc/systemd/system/snapper-cleanup.timer.d
+    state: directory
     owner: root
     group: root
     mode: '0755'
