@@ -36,9 +36,9 @@
     - name: Mount /.snapshots subvolume
       ansible.posix.mount:
         path: /.snapshots
-        src: "UUID={{ snapshot_volume.UUID }}"
+        src: "UUID={{ snapshot_subvolume.UUID }}"
         fstype: btrfs
-        opts: "{{ snapshot_volume.options }}"
+        opts: "{{ snapshot_subvolume.options }}"
         state: mounted
 
     - name: Set permissions for /.snapshots
