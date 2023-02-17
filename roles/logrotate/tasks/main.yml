@@ -1,0 +1,17 @@
+---
+# tasks file for logrotate
+- name: Install logrotate
+  community.general.pacman:
+    name: logrotate
+    state: present
+
+- name: Configure logrotate
+  ansible.builtin.blockinfile:
+    path: /etc/network/interfaces
+    insertafter: '^#compress'
+    block: |
+      compress
+      compresscmd /usr/bin/zstd
+      compressext .zst
+      compressoptions -T0 --long
+      uncompresscmd /usr/bin/unzstd
