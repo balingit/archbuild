@@ -7,7 +7,7 @@
 
 - name: Configure logrotate
   ansible.builtin.blockinfile:
-    path: /etc/network/interfaces
+    path: /etc/logrotate.conf
     insertafter: '^#compress'
     block: |
       compress
