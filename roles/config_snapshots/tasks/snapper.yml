@@ -71,7 +71,7 @@
     mode: '0755'
 
 - name: Override snapper-cleanup timer
-  ansible.builtin.file:
+  ansible.builtin.copy:
     src: override.conf
     dest: /etc/systemd/system/snapper-cleanup.timer.d/override.conf
     owner: root
