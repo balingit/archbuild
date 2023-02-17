@@ -10,8 +10,8 @@
   register: snapper_root
 
 - name: Create config root
-  block:
   when: not snapper_root.stat.exists
+  block:
     - name: Unmount .snapshots
       ansible.posix.mount:
         path: /.snapshots
