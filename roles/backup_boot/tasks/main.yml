@@ -1,0 +1,26 @@
+---
+# tasks file for backup_boot
+- name: Install rsync
+  community.general.pacman:
+    name: rsync
+    state: present
+
+- name: Create required directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  loop:
+    - /.bootbackup
+    - /etc/pacman.d/hooks
+
+
+- name: Override snapper-cleanup timer
+  ansible.builtin.copy:
+    src: 95-bootbackup.hook
+    dest: /etc/pacman.d/hooks/95-bootbackup.hook
+    owner: root
+    group: root
+    mode: '0644'

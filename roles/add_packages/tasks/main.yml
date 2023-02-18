@@ -12,3 +12,10 @@
     use: makepkg
     state: present
   become: no
+
+- name: Enable systemd services/timers
+  ansible.builtin.service:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  loop: "{{ services }}"

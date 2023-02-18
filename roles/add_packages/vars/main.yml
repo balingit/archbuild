@@ -4,7 +4,10 @@ packages:
   - base-devel
   - fakeroot
   - tree
+  - pacman-contrib
 
 aur:
   - vi-vim-symlink
 
+services:
+  - paccache.timer
