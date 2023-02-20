@@ -16,8 +16,3 @@
     - Start timesyncd service
     - Enable ntp
 
-- name: Start timesyncd service
-  ansible.builtin.service:
-    name: systemd-timesyncd
-    enabled: yes
-    state: started
