@@ -1,0 +1,3 @@
+---
+# vars file for sync_time
+time_servers: "s1.ntp.net.nz s2.ntp.net.nz s3.ntp.net.nz s4.ntp.net.nz"

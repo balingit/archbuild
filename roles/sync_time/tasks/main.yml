@@ -1,0 +1,23 @@
+---
+# tasks file for sync_time
+- name: Create timesyncd override directory 
+  ansible.builtin.file:
+    path: /etc/systemd/timesyncd.conf.d/
+    state: directory
+
+- name: Create config file
+  ansible.builtin.template:
+    src: servers.j2
+    dest: /etc/systemd/timesyncd.conf.d/servers.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - Start timesyncd service
+    - Enable ntp
+
+- name: Start timesyncd service
+  ansible.builtin.service:
+    name: systemd-timesyncd
+    enabled: yes
+    state: started

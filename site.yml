@@ -10,6 +10,9 @@
     - role: config_snapshots
       tags: snapshots
 
+    - role: sync_time
+      tags: time
+
     - role: add_packages
       tags: packages
 
