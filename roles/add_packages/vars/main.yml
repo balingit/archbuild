@@ -5,9 +5,11 @@ packages:
   - fakeroot
   - tree
   - pacman-contrib
+  - pkgfile
 
 aur:
   - vi-vim-symlink
 
 services:
   - paccache.timer
+  - pkgfile-update.timer

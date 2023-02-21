@@ -1,0 +1,8 @@
+---
+# tasks file for resolver
+- name: Enable and start systemd-resolved
+  ansible.builtin.service:
+    name: systemd-resolved
+    enabled: yes
+    state: started
+  notify: Link resolver
