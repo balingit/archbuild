@@ -9,3 +9,13 @@
       - pipewire-pulse
       - pipewire-jack
     state: present
+
+- name: Install gnome vlc and strawberry
+  community.general.pacman:
+    name:
+      - gnome
+      - vlc
+      - strawberry
+    extra_args: "--ignore epiphany, gnome-music, totem"
+    state: present
+
