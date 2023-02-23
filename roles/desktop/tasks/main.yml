@@ -1,7 +1,6 @@
 ---
 # tasks file for desktop
-# Install pipewire first
 - name: Install pipewire first
-  communitygenerapacman:
+  community.general.pacman:
     name: pipewire
     state: present
