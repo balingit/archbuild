@@ -2,11 +2,10 @@
 # tasks file for desktop
 - name: Install pipewire first
   community.general.pacman:
-    name: pipewire
+    name:
+      - pipewire
+      - pipewire-audio
+      - pipewire-alsa
+      - pipewire-pulse
+      - pipewire-jack
     state: present
-
-- name: Install wireplumber as dependency of pipewire-alsa
-  community.general.pacman:
-    name: wireplumber
-    state: present
-    extra_args: "--asdeps"
