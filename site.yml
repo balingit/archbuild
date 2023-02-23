@@ -21,3 +21,6 @@
 
     - role: resolver
       tags: resolve
+
+    - role: desktop
+      tags: desktop
