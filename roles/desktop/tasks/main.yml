@@ -14,7 +14,7 @@
   community.general.pacman:
     name: gnome
     state: present
-  when: not stat_gdm.exists
+  when: not stat_gdm.stat.exists
 
 - name: Remove unwanted gnome apps
   community.general.pacman:
