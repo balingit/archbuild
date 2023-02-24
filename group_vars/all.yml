@@ -2,3 +2,7 @@
 snapshot_subvolume:
   UUID: "e9761585-5384-4680-a9f5-d0a5cff98171"
   options: "rw,relatime,compress=zstd:3,space_cache=v2,subvol=/@snapshots"
+
+vbox_guest: https://archive.archlinux.org/packages/v/virtualbox-guest-utils/virtualbox-guest-utils-6.1.36-1-x86_64.pkg.tar.zst
+
+ignore_package: virtualbox-guest-utils

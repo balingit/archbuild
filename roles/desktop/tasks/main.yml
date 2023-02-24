@@ -39,3 +39,7 @@
     name: gdm
     enabled: yes
     state: started
+
+- name: Include task for box guest
+  ansible.builtin.include_tasks: vbox.yml
+  when: vbox_guest is defined

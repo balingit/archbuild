@@ -1,0 +1,11 @@
+---
+- name: Install guest additions
+  community.general.pacman:
+    name: "{{ vbox_guest }}"
+    state: present
+
+- name: Enable and start vboxservice
+  ansible.builtin.service:
+    name: vboxservice
+    enabled: yes
+    state: started
