@@ -5,11 +5,16 @@
     name: "{{ pipe_wire }}"
     state: present
 
-- name: Install gnome
+- name: Check if gdm in installed
+  ansible.builtin.stat:
+    path: /usr/bin/gdm
+  register: stat.gdm
+
+- name: Install gnome group
   community.general.pacman:
     name: gnome
     state: present
-  creates: /usr/bin/gdm
+  when: not stat.gdm.exists
 
 - name: Remove unwanted gnome apps
   community.general.pacman:
@@ -28,3 +33,9 @@
     use: makepkg
     state: present
   become: no
+
+- name: Enable and start gdm
+  ansible.builtin.service:
+    name: gdm
+    enabled: yes
+    state: started
