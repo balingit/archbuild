@@ -2,16 +2,29 @@
 # tasks file for desktop
 - name: Install pipewire first
   community.general.pacman:
-    name:
-      - pipewire
-      - pipewire-audio
-      - pipewire-alsa
-      - pipewire-pulse
-      - pipewire-jack
+    name: "{{ pipe_wire }}"
     state: present
 
-- name: Install gnome vlc and strawberry
+- name: Install gnome
   community.general.pacman:
     name: gnome
     state: present
+  creates: /usr/bin/gdm
 
+- name: Remove unwanted gnome apps
+  community.general.pacman:
+    name: "{{ unwanted_gui_apps }}"
+    state: absent
+    extra_args: "--recursive --nosave"
+
+- name: Install other apps
+  community.general.pacman:
+    name: "{{ other_gui_apps }}"
+    state: present
+
+- name: Install other gui AUR
+  kewlfft.aur.aur:
+    name: "{{ other_gui_aur }}"
+    use: makepkg
+    state: present
+  become: no

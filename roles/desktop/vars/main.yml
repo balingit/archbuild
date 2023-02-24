@@ -1,2 +1,20 @@
 ---
 # vars file for desktop
+pipe_wire:
+  - pipewire
+  - pipewire-audio
+  - pipewire-alsa
+  - pipewire-pulse
+  - pipewire-jack
+
+other_gui_apps:
+  - vlc
+  - strawberry
+
+unwanted_gui_apps:
+  - epiphany
+  - gnome-music
+  - totem
+
+other_gui_aur:
+  - google-chrome
