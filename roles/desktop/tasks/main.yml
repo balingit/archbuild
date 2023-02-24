@@ -20,7 +20,7 @@
   community.general.pacman:
     name: "{{ unwanted_gui_apps }}"
     state: absent
-    extra_args: "--recursive --nosave"
+    extra_args: "--recursive"
 
 - name: Install other apps
   community.general.pacman:
