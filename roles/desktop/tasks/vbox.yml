@@ -9,3 +9,10 @@
     name: vboxservice
     enabled: yes
     state: started
+
+- name: Ignore updates for vbox guest
+  ansible.builtin.lineinfile:
+    path: /etc/pacman.conf
+    regexp: "^IgnorePkg   ="
+    insertafter: "^#IgnorePkg"
+    line: "IgnorePkg   = {{ ignore_package }}"
