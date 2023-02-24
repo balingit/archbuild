@@ -8,13 +8,13 @@
 - name: Check if gdm in installed
   ansible.builtin.stat:
     path: /usr/bin/gdm
-  register: stat.gdm
+  register: stat_gdm
 
 - name: Install gnome group
   community.general.pacman:
     name: gnome
     state: present
-  when: not stat.gdm.exists
+  when: not stat_gdm.exists
 
 - name: Remove unwanted gnome apps
   community.general.pacman:
