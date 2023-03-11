@@ -1,5 +1,5 @@
 ---
-- hosts: arch
+- hosts: all
   gather_facts: no
   become: yes
 
