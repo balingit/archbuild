@@ -1,9 +1,0 @@
----
-- hosts: arch
-  gather_facts: no
-  become: yes
-
-  roles:
-    - role: add_collections
-      tags: coll
-
