@@ -1,0 +1,23 @@
+---
+- hosts: arch
+  gather_facts: no
+  become: yes
+
+  roles:
+    - role: add_collections
+      tags: coll
+
+    - role: config_snapshots
+      tags: snapshots
+
+    - role: sync_time
+      tags: time
+
+    - role: add_packages
+      tags: packages
+
+    - role: config_swap
+      tags: swap
+
+    - role: resolver
+      tags: resolve

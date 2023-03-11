@@ -1,0 +1,14 @@
+---
+- hosts: arch
+  gather_facts: no
+  become: yes
+
+  roles:
+    - role: add_collections
+      tags: coll
+
+    - role: add_packages
+      tags: packages
+
+    - role: logrotate
+      tags: logrotate
