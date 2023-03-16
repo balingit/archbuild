@@ -9,11 +9,3 @@
         type: collection
         name: google.cloud
         dest: /usr/share/ansible/collections
-
-    - name: Install gcloud
-      kewlfft.aur.aur:
-        name: google-cloud-cli
-        use: makepkg
-        state: present
-      become: no
-      
