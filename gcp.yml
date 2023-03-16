@@ -1,0 +1,19 @@
+---
+- hosts: all
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: Install gcp collection
+      community.general.ansible_galaxy_install:
+        type: collection
+        name: google.cloud
+        dest: /usr/share/ansible/collections
+
+    - name: Install gcloud
+      ewlfft.aur.aur:
+        name: google-cloud-cli
+        use: makepkg
+        state: present
+      become: no
+      
