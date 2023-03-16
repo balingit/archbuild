@@ -11,7 +11,7 @@
         dest: /usr/share/ansible/collections
 
     - name: Install gcloud
-      ewlfft.aur.aur:
+      kewlfft.aur.aur:
         name: google-cloud-cli
         use: makepkg
         state: present
